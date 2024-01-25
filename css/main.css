@@ -3,7 +3,6 @@ This css file includes several different formatting examples
 GENERAL
 **************************************/
 a {
-	background-color: white;
  text-decoration: none;
   color: #0d50cd;
  }
@@ -15,7 +14,6 @@ img {
 }
 
  body {
-   background-color: #DBF9FC;
    font-family: 'Open Sans', sans-serif;
  }
 
@@ -72,6 +70,7 @@ header {
  font-weight: normal;
  margin: -5px 0 0;
    color: #BFA181;
+   background-color: #006666;
  }
 
 
@@ -125,6 +124,7 @@ PAGE:
     max-width: 350px;
     margin: 0 auto 30px;
     border-radius: 5px;
+	background-color: white;
 }
 
 
@@ -167,6 +167,6 @@ nav a.selected, nav a:hover {
 }
 /* site body*/
 body {
-	background-image: linear-gradient(to right, #0A1828 0%, #0A1828 50%, #006666 50%, #006666 100%);
+	background-color: #0A1828;
     color: #BFA181;
 }
