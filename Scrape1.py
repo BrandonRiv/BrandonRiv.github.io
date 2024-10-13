@@ -46,7 +46,42 @@ def select_teams(teams_and_wins, owner_name, available_teams):
                 return selected_team
         print("Invalid team selection, please try again.")
 
-# Step 3: Run the Fantasy Basketball Game
+# Step 3: Generate HTML output
+def generate_html_output(owner_teams, owner_totals, winner):
+    # Simple HTML template for the output
+    html_template = '''
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Fantasy Basketball Results</title>
+    </head>
+    <body>
+        <h1>Fantasy Basketball Results</h1>
+        {results_table}
+        <h2>Winner: {winner}</h2>
+    </body>
+    </html>
+    '''
+
+    # Generate the results table
+    results_table = "<table border='1'>"
+    results_table += "<tr><th>Owner</th><th>Teams</th><th>Total Wins</th></tr>"
+    for owner, teams in owner_teams.items():
+        team_list = ', '.join([team[0] for team in teams])
+        total_wins = owner_totals[owner]
+        results_table += f"<tr><td>{owner}</td><td>{team_list}</td><td>{total_wins}</td></tr>"
+    results_table += "</table>"
+
+    # Fill the template with the results
+    html_content = html_template.format(results_table=results_table, winner=winner)
+
+    # Write the HTML content to a file
+    with open("fantasy_basketball_results.html", "w") as f:
+        f.write(html_content)
+
+    print("Results have been saved to 'fantasy_basketball_results.html'.")
+
+# Step 4: Run the Fantasy Basketball Game
 def run_fantasy_basketball_game():
     teams_and_wins = fetch_teams_and_wins()
 
@@ -62,25 +97,20 @@ def run_fantasy_basketball_game():
     owner_teams = {owner: [] for owner in owners}
 
     # Team selection rounds
-    for round_number in range(3):
+    for round_number in range(1):
         print(f"\n--- Round {round_number + 1} ---")
         for owner in owners:
             selected_team = select_teams(teams_and_wins, owner, available_teams)
             owner_teams[owner].append(selected_team)
 
-    # Step 4: Calculate the total wins for each owner
+    # Calculate the total wins for each owner
     owner_totals = {owner: sum([team[1] for team in teams]) for owner, teams in owner_teams.items()}
 
-    # Display the results
-    print("\n--- Results ---")
-    for owner, teams in owner_teams.items():
-        team_list = ', '.join([team[0] for team in teams])
-        total_wins = owner_totals[owner]
-        print(f"{owner} selected: {team_list}. Total wins: {total_wins}")
-
-    # Step 5: Determine and declare the winner
+    # Determine the winner
     winner = max(owner_totals, key=owner_totals.get)
-    print(f"\nThe winner is {winner} with {owner_totals[winner]} total wins!")
+
+    # Generate the HTML output
+    generate_html_output(owner_teams, owner_totals, winner)
 
 # Run the fantasy basketball game
 run_fantasy_basketball_game()
