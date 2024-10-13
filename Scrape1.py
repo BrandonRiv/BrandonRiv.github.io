@@ -94,7 +94,7 @@ def run_fantasy_basketball_game():
     available_teams = teams_and_wins[:]
 
     # Owners
-    owners = ["Owner 1", "Owner 2", "Owner 3"]
+    owners = ["JD", "John", "Brandon"]
     owner_teams = {owner: [] for owner in owners}
 
     # Team selection rounds
