@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-# Step 1: Fetch team data (school names and wins)
+# Step 1: Fetch team data (school names from Cell 0 and wins from Cell 2)
 def fetch_teams_and_wins():
     url = "https://www.sports-reference.com/cbb/seasons/men/2024-school-stats.html"
     response = requests.get(url)
@@ -18,15 +18,15 @@ def fetch_teams_and_wins():
         print("Could not find the table on the page.")
         return []
 
-    # Extract school names and overall wins
+    # Extract school names from Cell 0 and overall wins from Cell 2
     teams_and_wins = []
     for row in table.find('tbody').find_all('tr'):
         cells = row.find_all('td')
-        if len(cells) > 1:
-            school_name = cells[0].text.strip()
-            overall_wins = cells[1].text.strip()
+        if len(cells) > 2:  # Ensure there are enough columns
+            school_name = cells[0].text.strip()  # Team name from Cell 0
+            overall_wins = cells[2].text.strip()  # Overall wins from Cell 2
 
-            if overall_wins.isdigit():  # Ensure that we only capture valid win numbers
+            if overall_wins.isdigit():  # Ensure we only capture valid win numbers
                 teams_and_wins.append((school_name, int(overall_wins)))
 
     return teams_and_wins
@@ -75,11 +75,12 @@ def generate_html_output(owner_teams, owner_totals, winner):
     # Fill the template with the results
     html_content = html_template.format(results_table=results_table, winner=winner)
 
-    # Write the HTML content to a file
+    # Write the HTML content to a file named 'index.html'
     with open("index.html", "w") as f:
         f.write(html_content)
 
-    print("Results have been saved to 'fantasy_basketball_results.html'.")
+    print("Results have been saved to 'index.html'.")
+
 
 # Step 4: Run the Fantasy Basketball Game
 def run_fantasy_basketball_game():
@@ -97,7 +98,7 @@ def run_fantasy_basketball_game():
     owner_teams = {owner: [] for owner in owners}
 
     # Team selection rounds
-    for round_number in range(1):
+    for round_number in range(3):
         print(f"\n--- Round {round_number + 1} ---")
         for owner in owners:
             selected_team = select_teams(teams_and_wins, owner, available_teams)
