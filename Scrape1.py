@@ -76,7 +76,7 @@ def generate_html_output(owner_teams, owner_totals, winner):
     html_content = html_template.format(results_table=results_table, winner=winner)
 
     # Write the HTML content to a file
-    with open("fantasy_basketball_results.html", "w") as f:
+    with open("index.html", "w") as f:
         f.write(html_content)
 
     print("Results have been saved to 'fantasy_basketball_results.html'.")
