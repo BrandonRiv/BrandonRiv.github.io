@@ -35,9 +35,18 @@ def fetch_teams_and_wins():
 
     return teams_and_wins
 
-# Step 3: Generate HTML output with separate tables for each owner side by side
+# Step 3: Generate HTML output with the rankings displayed at the top
 def generate_html_output(owner_teams, owner_totals):
-    # Simple HTML template for the output with flexbox layout
+    # Sort the owners based on total points
+    sorted_owners = sorted(owner_totals.items(), key=lambda x: x[1], reverse=True)
+    
+    # Create a ranking order: 1st, 2nd, and 3rd place
+    owner_names = {"Owner 1": "JD", "Owner 2": "John", "Owner 3": "Brandon"}
+    rankings = f"<h2>1st Place: {owner_names[sorted_owners[0][0]]} ({sorted_owners[0][1]} points)</h2>"
+    rankings += f"<h2>2nd Place: {owner_names[sorted_owners[1][0]]} ({sorted_owners[1][1]} points)</h2>"
+    rankings += f"<h2>3rd Place: {owner_names[sorted_owners[2][0]]} ({sorted_owners[2][1]} points)</h2>"
+
+    # Simple HTML template for the output with flexbox layout and rankings at the top
     html_template = '''
     <!DOCTYPE html>
     <html>
@@ -75,7 +84,8 @@ def generate_html_output(owner_teams, owner_totals):
         </style>
     </head>
     <body>
-        <h1>Fantasy Basketball Results</h1>
+        <h1>Rankings</h1>
+        {rankings}
         <div class="container">
             {owner_tables}
         </div>
@@ -84,7 +94,6 @@ def generate_html_output(owner_teams, owner_totals):
     '''
 
     # Generate a table for each owner
-    owner_names = {"Owner 1": "JD", "Owner 2": "John", "Owner 3": "Brandon"}
     owner_tables = ""
 
     for owner, teams in owner_teams.items():
@@ -118,8 +127,8 @@ def generate_html_output(owner_teams, owner_totals):
         # Append the owner's table to the owner_tables string
         owner_tables += owner_table
 
-    # Fill the template with the generated tables
-    html_content = html_template.format(owner_tables=owner_tables)
+    # Fill the template with the generated tables and rankings
+    html_content = html_template.format(owner_tables=owner_tables, rankings=rankings)
 
     # Write the HTML content to a file named 'index.html'
     with open("index.html", "w") as f:
