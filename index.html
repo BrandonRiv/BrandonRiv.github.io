@@ -3,11 +3,42 @@
     <html>
     <head>
         <title>Fantasy Basketball Results</title>
+        <style>
+            .container {
+                display: flex;
+                justify-content: space-around;
+            }
+            table {
+                width: 30%;
+                border-collapse: collapse;
+                margin: 10px;
+            }
+            table, th, td {
+                border: 1px solid black;
+            }
+            th, td {
+                padding: 10px;
+                text-align: left;
+            }
+            .owner-col {
+                width: 10%;
+            }
+            .team-col {
+                width: 20%;
+            }
+            .points-col {
+                width: 5%;
+            }
+            h2 {
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
         <h1>Fantasy Basketball Results</h1>
-        <table border='1'><tr><th>Owner</th><th>Teams</th><th>Total Wins</th></tr><tr><td>JD</td><td>Xavier, Wofford, Tulane</td><td>47</td></tr><tr><td>John</td><td>Wyoming, UCF, Troy</td><td>52</td></tr><tr><td>Brandon</td><td>Winthrop, UCLA, Tulsa</td><td>49</td></tr></table>
-        <h2>Winner: John</h2>
+        <div class="container">
+            <table><caption><h2>JD</h2></caption><tr><th>Teams</th><th>Points</th></tr><tr><td class='team-col'>Abilene Christian</td><td class='points-col'>16</td></tr><tr><td class='team-col'>Air Force</td><td class='points-col'>9</td></tr><tr><td class='team-col'>Akron</td><td class='points-col'>24</td></tr><tr><td class='team-col'>Alabama</td><td class='points-col'>25</td></tr><tr><td class='team-col'>Alabama A&M</td><td class='points-col'>12</td></tr><tr><td class='team-col'>Alabama State</td><td class='points-col'>13</td></tr><tr><td class='team-col'>Albany (NY)</td><td class='points-col'>13</td></tr><tr><td class='team-col'>Alcorn State</td><td class='points-col'>14</td></tr><tr><td class='team-col'>American</td><td class='points-col'>16</td></tr><tr><td class='team-col'>Appalachian State</td><td class='points-col'>27</td></tr><tr><td>Total</td><td>169</td></tr></table><table><caption><h2>John</h2></caption><tr><th>Teams</th><th>Points</th></tr><tr><td class='team-col'>Arizona</td><td class='points-col'>27</td></tr><tr><td class='team-col'>Arizona State</td><td class='points-col'>14</td></tr><tr><td class='team-col'>Arkansas</td><td class='points-col'>16</td></tr><tr><td class='team-col'>Arkansas State</td><td class='points-col'>20</td></tr><tr><td class='team-col'>Arkansas-Pine Bluff</td><td class='points-col'>13</td></tr><tr><td class='team-col'>Army</td><td class='points-col'>10</td></tr><tr><td class='team-col'>Auburn</td><td class='points-col'>27</td></tr><tr><td class='team-col'>Austin Peay</td><td class='points-col'>19</td></tr><tr><td class='team-col'>Ball State</td><td class='points-col'>15</td></tr><tr><td class='team-col'>Baylor</td><td class='points-col'>24</td></tr><tr><td>Total</td><td>185</td></tr></table><table><caption><h2>Brandon</h2></caption><tr><th>Teams</th><th>Points</th></tr><tr><td class='team-col'>Bellarmine</td><td class='points-col'>8</td></tr><tr><td class='team-col'>Belmont</td><td class='points-col'>20</td></tr><tr><td class='team-col'>Bethune-Cookman</td><td class='points-col'>17</td></tr><tr><td class='team-col'>Binghamton</td><td class='points-col'>15</td></tr><tr><td class='team-col'>Boise State</td><td class='points-col'>22</td></tr><tr><td class='team-col'>Boston College</td><td class='points-col'>20</td></tr><tr><td class='team-col'>Boston University</td><td class='points-col'>16</td></tr><tr><td class='team-col'>Bowling Green State</td><td class='points-col'>20</td></tr><tr><td class='team-col'>Bradley</td><td class='points-col'>23</td></tr><tr><td class='team-col'>Brigham Young</td><td class='points-col'>23</td></tr><tr><td>Total</td><td>184</td></tr></table>
+        </div>
     </body>
     </html>
     
