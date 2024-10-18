@@ -90,6 +90,11 @@ def generate_html_output(owner_teams, owner_totals):
                 text-align: left;
                 word-break: break-word;
             }}
+            .ranking-table {{
+                margin: 20px auto;
+                width: 50%;
+                text-align: center;
+            }}
             h1 {{
                 text-align: center;
             }}
@@ -104,6 +109,15 @@ def generate_html_output(owner_teams, owner_totals):
         <div class="timestamp">
             <p>Last updated: {timestamp}</p>
         </div>
+        <div class="ranking-table">
+            <table>
+                <tr>
+                    <th>Owner</th>
+                    <th>Total Points</th>
+                </tr>
+                {ranking_rows}
+            </table>
+        </div>
         <h1>Rankings</h1>
         <div class="container">
             {owner_tables}
@@ -111,6 +125,12 @@ def generate_html_output(owner_teams, owner_totals):
     </body>
     </html>
     '''
+
+    # Generate the top table with owner names and total points
+    ranking_rows = ""
+    for i, (owner, total_points) in enumerate(sorted_owners):
+        owner_name = owner_names[owner]
+        ranking_rows += f"<tr><td>{owner_name}</td><td>{total_points}</td></tr>"
 
     # Generate a table for each owner in sorted order
     owner_tables = ""
@@ -155,8 +175,8 @@ def generate_html_output(owner_teams, owner_totals):
     if owner_counter % 3 != 0:
         owner_tables += "</div>"  # Close the last row if not already closed
 
-    # Fill the template with the generated tables, and timestamp
-    html_content = html_template.format(owner_tables=owner_tables, timestamp=timestamp)
+    # Fill the template with the generated ranking rows, owner tables, and timestamp
+    html_content = html_template.format(ranking_rows=ranking_rows, owner_tables=owner_tables, timestamp=timestamp)
 
     # Write the HTML content to a file named 'index.html'
     with open("index.html", "w") as f:
