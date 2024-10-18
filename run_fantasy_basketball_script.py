@@ -15,7 +15,7 @@ def wait_one_minute():
 # Step 3: Add, commit, and push changes to GitHub
 def push_to_github():
     # Navigate to your project directory
-    repo_directory = "C:/Users/brand/Desktop/SCraper/BrandonRiv.github.io"  # Replace with your actual repo path
+    repo_directory = "C:/Users/Admin/Desktop/BrandonRiv.github.io"  # Replace with your actual repo path
     os.chdir(repo_directory)
 
     print("Adding changes to git...")
