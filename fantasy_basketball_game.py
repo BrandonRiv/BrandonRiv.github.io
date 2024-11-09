@@ -4,7 +4,7 @@ from datetime import datetime
 
 # Step 1: Fetch team data (school names from Cell 0 and wins from Cell 2)
 def fetch_teams_and_wins():
-    url = "https://www.sports-reference.com/cbb/seasons/men/2024-school-stats.html"
+    url = "https://www.sports-reference.com/cbb/seasons/men/2025-school-stats.html"
     response = requests.get(url)
     
     if response.status_code != 200:
