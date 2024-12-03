@@ -133,6 +133,7 @@ def generate_html_output(owner_teams, owner_totals):
                 {ranking_rows}
             </table>
         </div>
+        <h1>Rankings</h1>
         <div class="container">
             {owner_tables}
         </div>
