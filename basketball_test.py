@@ -220,10 +220,10 @@ def generate_html_output(owner_teams, owner_totals):
     )
 
     # Write HTML content to file
-    with open("index.html", "w") as f:
+    with open("index2.html", "w") as f:
         f.write(html_content)
 
-    print("Results have been saved to 'index.html'.")
+    print("Results have been saved to 'index2.html'.")
 
 
 
