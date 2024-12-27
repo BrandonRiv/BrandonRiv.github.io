@@ -36,7 +36,6 @@ def fetch_teams_and_wins():
 
     return teams_and_wins
 
-# Generate HTML output with rankings displayed in the tables
 def generate_html_output(owner_teams, owner_totals):
     # Sort the owners based on total points in descending order
     sorted_owners = sorted(owner_totals.items(), key=lambda x: x[1], reverse=True)
@@ -71,13 +70,19 @@ def generate_html_output(owner_teams, owner_totals):
 
     # Calculate individual team values
     team_values = []
+    low_cost_teams = []
     for owner, teams in owner_teams.items():
         for team_name, wins, cost in teams:
             value = wins - cost
             team_values.append((owner, team_name, wins, cost, value))
+            if cost <= 1:  # Collect teams with cost ≤ 1
+                low_cost_teams.append((owner, team_name, wins, cost))
 
     # Sort the teams by value in descending order
     team_values = sorted(team_values, key=lambda x: x[4], reverse=True)[:5]
+
+    # Sort low-cost teams by wins in descending order and limit to top 5
+    low_cost_teams = sorted(low_cost_teams, key=lambda x: x[2], reverse=True)[:5]
 
     # Get the current timestamp
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -154,6 +159,18 @@ def generate_html_output(owner_teams, owner_totals):
                 {value_rows}
             </table>
         </div>
+        <div class="ranking-table">
+            <h2>Top Teams with Cost ≤ 1</h2>
+            <table>
+                <tr>
+                    <th>Owner</th>
+                    <th>Team</th>
+                    <th>Wins</th>
+                    <th>Cost</th>
+                </tr>
+                {low_cost_rows}
+            </table>
+        </div>
         <h1>Rankings</h1>
         <div class="container">
             {owner_tables}
@@ -167,6 +184,12 @@ def generate_html_output(owner_teams, owner_totals):
     for owner, team_name, wins, cost, value in team_values:
         owner_name = owner_names[owner]
         value_rows += f"<tr><td>{owner_name}</td><td>{team_name}</td><td>{wins}</td><td>{cost:.2f}</td><td>{value:.2f}</td></tr>"
+
+    # Generate rows for low-cost teams
+    low_cost_rows = ""
+    for owner, team_name, wins, cost in low_cost_teams:
+        owner_name = owner_names[owner]
+        low_cost_rows += f"<tr><td>{owner_name}</td><td>{team_name}</td><td>{wins}</td><td>{cost:.2f}</td></tr>"
 
     # Generate ranking rows
     ranking_rows = ""
@@ -214,13 +237,14 @@ def generate_html_output(owner_teams, owner_totals):
     # Fill the template
     html_content = html_template.format(
         value_rows=value_rows,
+        low_cost_rows=low_cost_rows,
         ranking_rows=ranking_rows,
         owner_tables=owner_tables,
         timestamp=timestamp
     )
 
     # Write HTML content to file
-    with open("index2.html", "w") as f:
+    with open("index2.html", "w", encoding="utf-8") as f:
         f.write(html_content)
 
     print("Results have been saved to 'index2.html'.")
