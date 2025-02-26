@@ -147,7 +147,7 @@ def generate_html_output(owner_teams, owner_totals):
             </table>
         </div>
         <div class="ranking-table">
-            <h2>Top 5 Teams by Value</h2>
+            <h2>Top 5 Teams by Value (Wins - Cost)</h2>
             <table>
                 <tr>
                     <th>Owner</th>
@@ -160,7 +160,7 @@ def generate_html_output(owner_teams, owner_totals):
             </table>
         </div>
         <div class="ranking-table">
-            <h2>Top Teams with Cost ≤ 1</h2>
+            <h2>Most Wins with Cost ≤ 1</h2>
             <table>
                 <tr>
                     <th>Owner</th>
