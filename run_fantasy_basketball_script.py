@@ -25,7 +25,9 @@ def push_to_github():
     subprocess.run(["git", "commit", "-m", "Automated commit after running fantasy basketball game script"], check=True)
 
     print("Pushing to GitHub...")
-    subprocess.run(["git", "push"], check=True)  # Assumes you have git configured to use HTTPS/SSH for pushing
+    # subprocess.run(["git", "push"], check=True)  # Assumes you have git configured to use HTTPS/SSH for pushing
+    subprocess.run(["C:/Program Files/Git/bin/git.exe", "push"], check=True)
+
 
 # Main function to run the steps
 def main():
