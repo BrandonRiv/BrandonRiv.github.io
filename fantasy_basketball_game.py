@@ -357,7 +357,7 @@ def run_fantasy_basketball_game():
             ("Iowa", teams_and_wins.get("Iowa", 0), 4),
             ("California", teams_and_wins.get("California", 0), 2),
             ("Syracuse", teams_and_wins.get("Syracuse", 0), 4.5),
-            ("VCU", teams_and_wins.get("VCU", 0), 1),
+            ("VCU", teams_and_wins.get("Virginia Commonwealth", 0), 1),
             ("Florida Atlantic", teams_and_wins.get("Florida Atlantic", 0), 7),
             ("East Tennessee State", teams_and_wins.get("East Tennessee State", 0), 1),
             ("UT Arlington", teams_and_wins.get("UT Arlington", 0), 2),
