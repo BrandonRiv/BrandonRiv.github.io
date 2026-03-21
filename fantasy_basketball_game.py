@@ -445,7 +445,7 @@ def run_fantasy_basketball_game():
             ("Yale", teams_and_wins.get("Yale", 0), 3),
             ("Akron", teams_and_wins.get("Akron", 0), 9.5),
             ("Winthrop", teams_and_wins.get("Winthrop", 0), 5),
-            ("North Dakota State", teams_and_wins.get("North Dakota State", 0), 0),
+            ("North Dakota State", teams_and_wins.get("North Dakota State", 0), 2),
             ("Iona", teams_and_wins.get("Iona", 0), 6),
         ],
 
